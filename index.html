@@ -1,0 +1,491 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="description" content="Фонд национального спасения Беларуси">
+  <meta name="keywords" content="Фонд спасения Беларуси, Фонд Беларусь, фонд беларуского вольного народа, национальный фонд спасения Беларуси, фонд выратаванне, помочь Беларуси, помощь Беларуси, помочь беларускому обществу, помочь беларускому народу, помощь беларусам, поддержать беларусов">  
+  <script type="text/javascript" src="common.js"></script>
+  <title>Фонд национального спасения</title>
+  <style>
+
+#header {
+
+  font-size: 30px;
+  font-family: sans-serif;    
+}
+
+#balancediv {
+
+  font-size: 30px;
+  font-family: sans-serif;    
+  margin: 20px;
+}
+
+#description {
+
+  font-size: 16px;
+  font-family: sans-serif;    
+  margin: 10px;  
+}
+
+.menu {
+  font-size: 14px; 
+  font-family: sans-serif;  
+  margin-top: 20px; 
+  margin-bottom: 20px;
+}
+
+.admincomment {
+  font-size: 16px; 
+  font-family: serif;  
+  margin-top: 0px; 
+  margin-bottom: 0px;
+}
+
+.contentdiv {
+  width: 100%; 
+  margin: auto; 
+  text-align: left; 
+  font-size: 14px; 
+  font-family: sans-serif; 
+  border: 0px solid black; 
+  padding: 10px;
+  background-color: #F2F2F200
+}
+
+hr {
+  border-top: 1px solid lightgray;
+}
+
+  </style>
+</head>
+<body>
+
+<script>
+
+
+var mainJson
+
+console.log( mainJson )
+
+var multiQuery = buildMultiQuery()
+
+var totalBalanceBtc = 0
+var timerId
+var countTime = 0
+var countTimeLimit = 1000
+var ibalance = 0
+
+</script>
+
+<div class="maincontent" style="width: 100%; text-align: center;">
+<br>  
+<div id="header">Фонд национального спасения</div>
+<div id="balancediv" style="display:block">
+$ <span id="totalUsd">0</span><!-- <span id="totalBtc">0</span> BTC -->
+</div>
+<div id="description">
+Фонд открыт для решения текущих задач беларуского общества.<br>
+Сохранность фонда гарантируют 3 человека.<br>
+Активно ищем ещё двоих.<br>
+</div>
+
+<div class="menu">
+  <a href="manualforinvestors.html">Для вкладчиков</a>&nbsp;
+  <a href="reglament.html">Регламент фонда</a>&nbsp;
+  <a href="manualforgarants.html">Для гарантов</a>
+</div>
+
+<hr>
+<!--
+<div class="admincomment">
+<i>Сайт и Фонд в тестовом режиме.<br>
+Поэтому, прошу пока аккуратно. Но в принципе уже всё проверено и работает.<br>
+Смелые могут уже отправить перевод. Переводы работают. Сначала собираем на хостинг.<br>
+И прошу обсуждать Регламент и инструкции. Все что неясно/непонятно по ходу будем добавлять.<br>
+SlavRev.
+</i>
+</div>
+
+<hr>-->
+
+<div id="garants" class="contentdiv">
+Гаранты фонда<br>
+<br>
+<div id="garantsList">
+</div>
+</div>
+
+<hr>
+
+<div class="contentdiv">
+Последние поступления<br>
+<br>
+<div id="lastInputsList">
+</div>
+<br>
+<a href="findMyInput.html">Найти перевод</a><br>
+<br>
+Cнятия<br>
+<br>
+<div id="legitimateOutputs">
+</div>
+<br>
+Непредвиденные снятия<br>
+<br>
+<div id="illegitimateOutputs">
+</div>
+</div>  
+
+<hr>
+
+<div class="contentdiv">
+Перевести на счёт фонда<br>
+<!--
+<br>
+Адреса:<br>
+<br>
+0. Для начала нам нужно доменное имя + хостинг с безлимитным трафиком.<br>
+Доменное имя будет, скорее всего: belarusfond.com<br>
+Стоит это всё приблизительно 30$ за доменное имя + по 10$ за хостинг в месяц, скорее всего.<br>
+Т.е. для начала нужна сумма примерно в 100-150$. Излишки пойдут на счёт Фонда.<br>
+Для хостинга - отдельный кошелёк, убедительная просьба - переводить на него, пока не закажем домен и хостинг.<br>
+<br>
+Кошелёк для хостинга:<br>
+bc1q68haq8g9ta4e5jemh592ahcwvzfa7w5k705sd3 &nbsp;&nbsp;&nbsp;<a href="https://www.blockchain.com/ru/btc/address/bc1q68haq8g9ta4e5jemh592ahcwvzfa7w5k705sd3">Внешний сервер</a><br>
+<br>
+Ключ для мониторинга:<br>
+zpub6n1xH66323svHzibTrejHKrvVnD44EUMuFZ5a4hNoQtf7cLsZqBodn33apWbmBJbLSrZvKgSxnjXq95d7kbd3dpm9HbQR3WrPZLoWRDKf3f<br>
+-->
+<br>
+Адреса Фонда:<br>
+<br>
+<div id="walletsList">
+</div>
+<br>
+<a href="manualforinvestors.html">Как переводить</a><br>
+</div>
+
+<hr>
+
+<div class="contentdiv">
+Контакты и обратная связь<br>
+<br>
+1. <a href="mailto:slav.rev7@gmail.com">slav.rev7@gmail.com</a><br>
+Почта администрации<br>
+Эта почта, также служит для Гарантов.<br>
+Через эту почту также можно добавиться в "нас поддерживают".
+Также на неё можно направлять вопросы.<br>
+Почта просматривается ежедневно.<br>
+<br>
+2. <a href="https://www.belarusforum.org/t/fond-naczionalnogo-spaseniya-obsuzhdenie-voprosy/1892">Тема для обсуждений Фонда публично</a><br>
+В этой теме можно обсудить Фонд публично, и также задать вопросы.<br>
+Тема просматривается администрацией ежедневно.<br>
+<br>
+Всё. Других контактов - нет.
+</div>
+
+<hr>
+
+<div class="contentdiv">
+Нас поддерживают:<br>
+<br>
+<a href="https://www.belarusforum.org/"><img height="25" src="img/logo_forum.svg" style="margin-bottom:5px;"></a>
+<a href="https://hramada.org/"><img height="35" src="img/hramada.png" style="margin-left:10px;"></a>
+</div>
+
+<hr>
+
+<div class="contentdiv">
+Фонд находится во владении всего беларуского общества. И действует в соотвестии с Коном.  
+</div>  
+
+</div>
+
+<!--
+Идея и реализация: SlavRev, Максим Шабуцкий
+Фонд находится во владении всего беларуского общества, и охраняется Коном
+-->
+
+
+<!-- 
+
+  Что гарантирует гарант?
+
+Гарант является держателем ключа от счёта биткоина. Этот ключ есть только у Гаранта. И более ни у кого.
+Таким образом Гарант гарантирует:
+* Что он сам сгенерировал и создал счёт.
+* Ключ сохранён только у него.
+* Что он выполняет регламент Фонда.
+* Гарант гарантирует (несёт личную ответственность), что деньги на счету находятся в сохранности.
+* Гарант не может по собственному желанию распоряжаться деньгами на счету. Кроме критических случаев.
+* Гарант гарантирует, что при достижении целей, он переведёт средства по решению беларуского общества, и эти средства окажутся на счету получателя.
+* Плюс, поскольку Гарантов, мы ищем среди известных людей, Гарант гарантирует, что по мере возможностей - объявит по своим каналам, о существовании Фонда, и привлечёт общественность.
+
+В награду гарант получает определённый процент от собранной суммы (суммарной суммы на общем счету).
+Но только после того, как счёт выполняет/выполнит свою задачу.
+До этого времени гарант не имеет права забрать свой процент.
+Какой именно процент, будет решаться на голосовании.
+Отказы получать процент - не принимаются. Это правила Фонда.
+
+Как вы можете гарантировать, что Гарант не снял со счёта тайно?
+
+Вся статистика о снимаемых деньгах - отображается онлайн.
+Это открытая информация, и перепроверить её можно на любом биткоин-сервисе.
+В общем, Гарант не может снять деньги со счёта, будучи незамеченным - никак.
+Если он это сделает, на сайте сразу же появится уведомление для всех: кто снял и откуда.
+
+Что если гарант не выполняет/не выполнит обязательства?
+
+Монета о двух сторонах.
+Если Гарант выполняет свою роль по регламенту: почёт, слава, всеобщее уважение, плюс получает процент от собранной суммы.
+Если Гарант не выполняет свою роль: забвение, позор, общественное осуждение, испорченная карма - своя, и своего рода.
+
+В принципе, выполнить обязательства несложно. Достаточно себя (и ключ) обезопасить, как - мы рассказываем в инструкциях. 
+Быть при этом достаточно известным, и честным человеком.
+
+
+Почему именно биткоин?
+
+Биткоин - сеть распределённая (на множестве серверов), анонимная (без указания личных данных).
+То есть, её фактически никто не контролирует, и никто не может заблокировать.
+Гаранты при использовании приложения Tor остаются также полностью анонимными, их расположение - никому не известно.
+Перевод может быть осуществлён также анонимно на анонимный счёт.
+Перечисляющие средства также в принципе остаются анонимными. В том числе и для Фонда.
+Данные биткоин сети - публичные. Баланс кошельков, транзакции - открытые, и могут быть просмотрены любым желающим, в том числе на своём компьютере и на сторонних сервисах.
+
+
+-->
+
+<script>
+
+fillGarantsList()
+loadBtcToUsd( function( usd ) {
+
+  usdPrice = usd  
+
+  document.querySelector('#balancediv').style.display = 'block'
+
+  loadWallets( onWalletsLoaded )  
+})
+
+
+function fillGarantsList() {
+
+  var garantsList = document.querySelector('#garantsList')
+
+  for( var i=0; i<3; i++ ) {
+
+    if( garants[i] )
+      garantsList.innerHTML += (i+1) + '. ' + garants[i].name + ' ( <a href="'+garants[i].link+'">Ссылка на публикацию</a>)<br>'
+    else
+      garantsList.innerHTML += (i+1) + '. <место вакантно><br>'
+  }
+}
+
+function onWalletsLoaded() {
+
+  totalBalanceBtc += mainJson.wallet.final_balance / 100000000
+
+  timerId = setInterval( displayCount, 50 )
+
+  fillWallets()
+  fillLastInputs()
+  fillLastOutputs()
+
+  var legitimateOutputsTotal = countLegitimateOutputsTotal()
+
+  if( mainJson.wallet.total_received - mainJson.wallet.final_balance == legitimateOutputsTotal ) {
+
+    var illegitimateOutputs = document.querySelector('#illegitimateOutputs')
+    illegitimateOutputs.innerText = '<Нет>'
+  }  
+  else {
+
+    // кто-то снял деньги нелегально!
+    // найдём, кто именно    
+    loadIllegitimateOutputs()
+  }
+
+}
+
+function countLegitimateOutputsTotal() {
+
+  var total = 0
+
+  for( var i=0; i<legitimateOutTransactions.length; i++ )
+    total += legitimateOutTransactions[i].value 
+  
+  return total
+}
+
+
+
+
+function displayCount() {
+
+  countTime += 50;
+
+  ibalance = countTime / countTimeLimit * totalBalanceBtc;
+  if( ibalance > totalBalanceBtc )
+    ibalance = totalBalanceBtc
+
+  // document.querySelector('#totalBtc').innerText = ibalance.toFixed(8)
+  document.querySelector('#totalUsd').innerText = formatterUsd.format( ibalance * usdPrice ).slice( 0, -5 )
+  // console.log('count iter' + ibalance );  
+
+  if( countTime == countTimeLimit ) {
+    clearInterval( timerId )
+
+    console.log('cleared')
+  }
+}
+
+function fillLastInputs() {
+
+  var max = 20
+  var n = mainJson.txs.length
+  if( n > max ) n = max
+
+  var transaction
+  var i = 0
+
+  var lastInputsList = document.querySelector('#lastInputsList')
+  var input
+  var date
+
+  while( i < n && i < mainJson.txs.length ) {
+
+    transaction = mainJson.txs[i]
+
+    if( isOuterAddress( transaction.inputs[0].prev_out.addr ) ) { // input
+
+      date = new Date( transaction.time * 1000 )
+    
+      input = document.createElement('div')
+
+      input.innerHTML = 
+      '$' + formatterUsd.format( satToUsd( transaction.result ) ).slice( 0, -2 ) + ' - ' + 
+      satToBtc( transaction.result ) + ' BTC - ' + 
+      dateFormatter.format(date) + ' ' +
+      '<a href="https://blockchain.info/rawtx/'+transaction.hash+'">' + toShortTxName( transaction.hash) + '</a>'
+
+
+      lastInputsList.appendChild( input )
+      
+      n++;
+    }
+
+    i++;
+  }  
+
+  if( lastInputsList.childElementCount == 0 )
+    lastInputsList.innerHTML = '<Поступлений ещё не было>'
+}
+
+function fillLastOutputs() {
+
+  var legitimateOutputs = document.querySelector('#legitimateOutputs')
+
+  if( legitimateOutTransactions.length == 0 ) 
+    legitimateOutputs.innerText = '<Нет>'
+  
+  else {
+
+    var transaction
+    var output
+    var date
+
+    for( var i=0; i<legitimateOutTransactions.length; i++ ) {
+
+      transaction = legitimateOutTransactions[i]
+
+      date = new Date( transaction.time * 1000 )
+    
+      output = document.createElement('div')  
+
+      output.innerHTML = 
+      '$' + formatterUsd.format( satToUsd( transaction.value ) ).slice( 0, -2 ) + ' - ' + 
+      satToBtc( transaction.value ) + ' BTC - ' + 
+      dateFormatter.format(date) + ' ' + 
+      transaction.description + ' ' +
+      '<a href="https://blockchain.info/rawtx/'+transaction.hash+'">' + toShortTxName( transaction.hash) + '</a>'
+
+      legitimateOutputs.appendChild( output )      
+    }
+  }
+}
+
+var timer2Id
+var offset
+
+function loadIllegitimateOutputs() {
+
+  offset = 0
+  timer2Id = setInterval( loadTransactionsIter, 1000 )  
+}
+
+function loadTransactionsIter() {
+
+  var xmlhttp = new XMLHttpRequest();
+  xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4) {
+
+      if( this.status == 200 ) {
+
+        console.log( this.responseText );
+
+        var json = JSON.parse( this.responseText );
+
+        var illegitimateOutputs = document.querySelector('#illegitimateOutputs')
+        var transaction
+        var value
+        var output 
+        var date    
+
+        for( var i=0; i<json.txs.length; i++ ) {
+
+          transaction = json.txs[i]
+
+          if( !isOuterAddress( transaction.inputs[0].prev_out.addr ) && !isLegitimateTransaction( transaction.hash ) ) { 
+
+            // illigitimate output!
+
+            value = -transaction.result
+
+            date = new Date( transaction.time * 1000 )
+          
+            output = document.createElement('div')
+            output.style.color = 'red';
+
+            output.innerHTML = 
+            getGarantNameByAddress( transaction.inputs[0].prev_out.addr ) + ' ' +
+            '$' + formatterUsd.format( satToUsd( value ) ).slice( 0, -2 ) + ' - ' + 
+            satToBtc( value ) + ' BTC - ' + 
+            dateFormatter.format(date) + ' ' + 
+            '<a href="https://blockchain.info/rawtx/'+transaction.hash+'">' + toShortTxName( transaction.hash ) + '</a>'
+
+            illegitimateOutputs.appendChild( output )      
+          }
+        }
+
+        if( json.txs.length == 0 ) {
+          clearInterval( timer2Id ) 
+          alert('Обнаружены нелегитимные снятие денег! Если вы заметили это сообщение, убедительная просьба: не переводите деньги! Взаимен этого сообщите об этом администраторам. Для выяснения инцидента.')         
+        }
+
+      } else {  
+
+        alert('Не удалось загрузить нелегитимные снятия');
+      }
+    }
+  };
+
+  xmlhttp.open('GET', buildMultiQueryEx( offset ), true);
+  xmlhttp.send();  
+
+  offset += 200
+}
+
+</script>
+</body> 
+</html>

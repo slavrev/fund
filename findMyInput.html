@@ -1,0 +1,140 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <script type="text/javascript" src="common.js"></script>    
+  <title>Поиск перевода</title>
+  <style>
+
+#value {
+  height: 40px;
+  font-size: 16px;
+}
+
+  </style>
+</head>
+<body>
+<b>Поиск перевода</b><br>
+<br>
+Введите точную сумму вашего перевода, и срок<br>
+<br>
+Сумма:&nbsp;&nbsp;<input id="value" type="number" step='0.00000001' value='0.00000000' placeholder='0.00000000' lang="en"> BTC<br>
+<br>
+Срок:&nbsp;&nbsp;&nbsp;<select id="interval">
+      <option value="oneDay" selected="selected">1 день</option>
+      <option value="sevenDays">7 дней</option>
+      <option value="thirtyDays">30 дней</option>          
+    </select><br>
+<br>
+<button onclick="doSearch()">Поиск</button><br>
+<br>
+Результаты<br>
+<br>
+<div id="results">
+</div>
+
+<script>
+
+var offset
+var timerId
+var value
+var interval
+
+function daysToMillis( days ) {
+  return days * 86400 * 1000
+}
+
+function doSearch() {
+
+  value = Number( document.querySelector('#value').value ) * 100000000
+
+  console.log( 'value: ', value )
+
+  if( value <= 0 ) {
+    alert('Укажите верную сумму')
+    return
+  }
+
+  var intervalSelectValue = document.querySelector('#interval').value
+
+  switch( intervalSelectValue ) {
+    case 'oneDay': interval = daysToMillis( 1 ); break;
+    case 'sevenDays': interval = daysToMillis( 7 ); break;
+    case 'thirtyDays': interval = daysToMillis( 30 ); break;
+  }  
+
+  loadBtcToUsd( function( usd ) {
+
+    usdPrice = usd  
+
+    document.querySelector('#results').innerHTML = ''
+    offset = 0
+    timerId = setInterval( searchIter, 1000 )
+  })  
+}
+
+function searchIter() {
+
+  var xmlhttp = new XMLHttpRequest();
+  xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4) {
+
+      if( this.status == 200 ) {
+
+        console.log( this.responseText );
+
+        var json = JSON.parse( this.responseText );
+
+        var results = document.querySelector('#results')
+        var transaction
+        var input 
+        var date
+        var now = new Date()
+        var lastDate
+
+        for( var i=0; i < json.txs.length; i++ ) {
+
+          transaction = json.txs[i]
+          date = new Date( transaction.time * 1000 )          
+
+          if( transaction.result == value &&
+              isOuterAddress( transaction.inputs[0].prev_out.addr ) &&
+              now.getTime() - date.getTime() <= interval ) { // input
+
+            input = document.createElement('div')
+
+            input.innerHTML = 
+            '$' + formatterUsd.format( satToUsd( transaction.result ) ).slice( 0, -2 ) + ' - ' + 
+            satToBtc( transaction.result ) + ' BTC - ' + 
+            dateFormatter.format(date) + ' ' +
+            '<a href="https://blockchain.info/rawtx/'+transaction.hash+'">' + toShortTxName( transaction.hash ) + '</a>'
+
+            results.appendChild( input )
+          }
+
+          lastDate = date
+        }
+
+        if( json.txs.length == 0 || now.getTime() - lastDate.getTime() > interval ) {
+          clearInterval( timerId )
+
+          if( results.childElementCount == 0 )
+            results.innerText = '<Не найдено>'
+        }
+
+      } else {  
+
+        alert('Не удалось загрузить транзакции, попробуйте ещё раз');
+      }
+    }
+  };
+
+  xmlhttp.open('GET', buildMultiQueryEx( offset ), true);
+  xmlhttp.send();  
+
+  offset += 200
+}
+
+</script>
+
+</body>
+</html>
